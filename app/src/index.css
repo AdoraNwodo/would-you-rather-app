@@ -28,6 +28,7 @@ div.login-box{
 }
 
 .form-control{width: 100%; height: 25px; outline: none;}
+.center-block{display: block; margin: 0 auto;}
 
 button.btn-login.form-control{
   border: 1px solid palevioletred;
@@ -40,3 +41,15 @@ button.btn-login.form-control:hover{
   color: white;
   background: palevioletred;
 }
+
+.page-not-found{
+  padding: 30px 10px;
+}
+.page-not-found .go-to-home{
+  border: 1px solid palevioletred;
+  color: palevioletred;
+  padding: 6px 10px;
+  text-decoration: none;
+  text-align: center !important;
+ }
+ p.link{margin-top: 30px;}

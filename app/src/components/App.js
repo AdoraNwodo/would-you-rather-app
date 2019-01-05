@@ -1,27 +1,26 @@
-import React, { Component } from 'react';
-//import logo from './logo.svg';
-//<img src={logo} className="App-logo" alt="logo" />
-
+import React, { Component, Fragment} from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Nav from './Nav';
+import Header from './Header';
+import PageNotFound from './PageNotFound';
+import Login from './Login';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="title">Would you rather</h1>
-          <div className="login-box"> 
-              <p className="text-center">Login to play</p>
-              <select className="form-control">
-                <option disabled="disabled" selected>Choose a User</option>
-                <option>User One</option>
-                <option>User One</option>
-                <option>User One</option>
-              </select>
-              <button className="btn-login form-control" type="submie">
-                  Login
-              </button>
-          </div>
-        </header>
+      <div>
+        <Header />
+        <Router>
+          <Fragment>
+            <div className='container'>
+              <Switch>
+                <Route path='/' exact component={Login} />
+                <Route component={PageNotFound} />
+              </Switch>
+            </div>
+          </Fragment>
+        </Router>
+      
       </div>
     );
   }
