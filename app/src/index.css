@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Sacramento|Work+Sans');
-*{font-family: 'Work Sans', sans-serif;}
+
+*{
+  font-family: 'Work Sans', sans-serif;
+}
 body {
   padding: 0px;
   margin: 0px;
-  border: 15px solid palevioletred;
-  min-height: calc(100vh - 30px);
+  border: 10px solid palevioletred;
+  min-height: calc(100vh - 20px);
 }
 
 h1.title{
@@ -51,5 +54,45 @@ button.btn-login.form-control:hover{
   padding: 6px 10px;
   text-decoration: none;
   text-align: center !important;
- }
- p.link{margin-top: 30px;}
+}
+p.link{margin-top: 30px;}
+.row.navigation{
+   background: palevioletred;
+   width: 100%;
+}
+.row.navigation ul li{
+  list-style-type: none;
+  display: inline-block;
+  padding: 7px 15px;
+}
+.row.navigation ul li a{
+  text-decoration: none;
+  color: black;
+  font-size: 12px;
+}
+.row.navigation ul li a:hover, .row.navigation ul li a.active{
+  border-bottom: 3px solid black;
+}
+.float-right{
+  float: right;
+}
+.profile{
+  border-top: 1px solid rgb(235, 233, 233);
+  padding-top: 20px;
+}
+.profile img{
+  width: 40px;
+  border-radius: 50%;
+}
+.profile p{
+  font-size: 11px;
+}
+.profile button{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: palevioletred;
+}
+.profile button:hover{
+  text-decoration: underline;
+}
