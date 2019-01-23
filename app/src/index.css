@@ -103,6 +103,13 @@ p.link{margin-top: 30px;}
   padding: 10px;
   margin-bottom: 30px; 
 }
+.card-lg-2{
+  width: 70%;
+  border: 1px solid rgb(105, 105, 105);
+  border-radius: 10px;
+  padding-bottom: 30px;
+  margin-bottom: 30px; 
+}
 .card{
   width: 350px;
   border: 1px solid rgb(105, 105, 105);
@@ -144,8 +151,18 @@ button.addquestion{
   margin-top: 10px;
   margin-bottom: 15px;
 }
-.card-lg .row{
+.card-lg .row, .questionlistcard .row{
   width: 100%;
+}
+.questionlistcard .img-col{
+  width: 40%;
+  display: inline-block;
+  height: 50px;
+  overflow: hidden;
+}
+.questionlistcard .img-col img{
+  height: 50px;
+  width: auto;
 }
 .card-lg .img-col{
   width: calc(20% - 10px);
@@ -158,7 +175,7 @@ button.addquestion{
   height: 50px;
   width: auto;
 }
-.card-lg .details-col p{
+.card-lg .details-col p, .questionlistcard .details-col p{
   font-size: 13px;
   margin-block-end: 3px;
   margin-block-start: 0px;
@@ -170,6 +187,12 @@ button.addquestion{
   padding: 5px;
   overflow: hidden;
 }
+.questionlistcard .details-col{
+  width: calc(60% - 10px);
+  display: inline-block;
+  height: 50px;
+  overflow: hidden;
+}
 .card-lg .score-col{
   width: calc(20% - 10px);
   margin-top: -120px;
@@ -177,4 +200,35 @@ button.addquestion{
   height: 50px;
   padding: 5px;
   overflow: hidden;
+}
+.card-lg-2{
+  padding: 0px 20px 20px 20px;
+}
+.card-lg-2 ul{
+  padding: 0;
+  list-style-type: none;
+  margin-block-start: 15px;
+  margin-block-end: 25px;
+}
+.card-lg-2 ul li{
+  list-style-type: none;
+  display: inline-block;
+  width: 50%;
+}
+.card-lg-2 ul li button{
+  width: 100%;
+  background: white !important;
+  border: none;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  border-radius: 0px;
+}
+.card-lg-2 ul li button.active{
+  border-bottom: 2px solid palevioletred;
+}
+.questionlistcard{
+  border: 1px solid goldenrod;
+  padding: 10px 0px;
+  margin-bottom: 10px;
 }
