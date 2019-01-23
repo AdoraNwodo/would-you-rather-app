@@ -96,3 +96,85 @@ p.link{margin-top: 30px;}
 .profile button:hover{
   text-decoration: underline;
 }
+.card-lg{
+  width: 70%;
+  border: 1px solid rgb(105, 105, 105);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 30px; 
+}
+.card{
+  width: 350px;
+  border: 1px solid rgb(105, 105, 105);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+.card h3{
+  margin-block-start: 5px !important;
+  margin-block-end: 5px !important;
+}
+.card span{
+  font-size: 12px;
+}
+.card p{
+  margin-block-start: 5px !important;
+  margin-block-end: 5px !important;
+}
+input[type=text]::placeholder{
+  text-align: center;
+}
+input[type=text]{
+  margin: 7px 0px;
+  width: 330px;
+  outline: none;
+  padding: 5px;
+  text-align: center;
+}
+input[type=text]:focus{
+  border: 1px solid palevioletred;
+}
+button.addquestion{
+  background: black;
+  color: white;
+  border: 1px solid black;
+  padding: 4px 8px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.card-lg .row{
+  width: 100%;
+}
+.card-lg .img-col{
+  width: calc(20% - 10px);
+  display: inline-block;
+  height: 50px;
+  padding: 5px;
+  overflow: hidden;
+}
+.card-lg .img-col img{
+  height: 50px;
+  width: auto;
+}
+.card-lg .details-col p{
+  font-size: 13px;
+  margin-block-end: 3px;
+  margin-block-start: 0px;
+}
+.card-lg .details-col{
+  width: calc(60% - 10px);
+  display: inline-block;
+  height: 50px;
+  padding: 5px;
+  overflow: hidden;
+}
+.card-lg .score-col{
+  width: calc(20% - 10px);
+  margin-top: -120px;
+  display: inline-block;
+  height: 50px;
+  padding: 5px;
+  overflow: hidden;
+}

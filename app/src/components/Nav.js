@@ -14,7 +14,7 @@ export default function Nav(){
             <div className="row navigation">
             <ul>
                 <li>
-                    <NavLink to='/' exact activeClassName='active'>
+                    <NavLink to='/home' exact activeClassName='active'>
                         Home
                     </NavLink>
                 </li>

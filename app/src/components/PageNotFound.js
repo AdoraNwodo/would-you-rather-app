@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import Nav from './Nav';
 
 class PageNotFound extends Component {
     render() {
