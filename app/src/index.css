@@ -80,7 +80,7 @@ p.link{margin-top: 30px;}
   border-top: 1px solid rgb(235, 233, 233);
   padding-top: 20px;
 }
-.profile img{
+.profile-image{
   width: 40px;
   border-radius: 50%;
 }
@@ -231,4 +231,12 @@ button.addquestion{
   border: 1px solid goldenrod;
   padding: 10px 0px;
   margin-bottom: 10px;
+}
+.question-form span{
+  color: palevioletred;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.question-form{
+  padding: 50px 0px;
 }

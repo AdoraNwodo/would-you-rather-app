@@ -26,7 +26,7 @@ class Home extends Component {
                             <p>Sarah Edo asks - Would you rather</p>
                             <p><strong>become a superhero...</strong></p>
                             <p>
-                            <NavLink to='/'>
+                            <NavLink to='/questions/5'>
                                 View Poll
                             </NavLink>
                             </p>
@@ -43,7 +43,7 @@ class Home extends Component {
                             <p>Sarah Edo asks - Would you rather</p>
                             <p><strong>become a superhero...</strong></p>
                             <p>
-                            <NavLink to='/'>
+                            <NavLink to='/questions/5'>
                                 View Poll
                             </NavLink>
                             </p>

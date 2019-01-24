@@ -6,6 +6,7 @@ import Login from './Login';
 import Home from './Home';
 import AddQuestion from './AddQuestion';
 import LeaderBoard from './LeaderBoard';
+import Question from './Question';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
               <Switch>
                 <Route path='/' exact component={Login} />
                 <Route path='/home' exact component={Home} />
+                <Route path='/questions/:id' exact component={Question} />
                 <Route path='/add' exact component={AddQuestion} />
                 <Route path='/leaderBoard' exact component={LeaderBoard} />
                 <Route component={PageNotFound} />
