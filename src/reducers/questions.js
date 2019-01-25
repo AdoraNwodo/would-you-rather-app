@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION } from '../actions/tweets'
+import { RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION } from '../actions/questions'
 
 export default function tweets (state = {}, action) {
   switch(action.type) {

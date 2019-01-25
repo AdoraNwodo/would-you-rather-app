@@ -1,13 +1,20 @@
 import React, { Component, Fragment} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Header from './Header';
-import PageNotFound from './PageNotFound';
-import Login from './Login';
-import Home from './Home';
-import AddQuestion from './AddQuestion';
-import LeaderBoard from './LeaderBoard';
-import Question from './Question';
-import Result from './Result';
+import { connect } from 'react-redux'
+import { handleInitialData } from '../actions/shared'
+import LoadingBar from 'react-redux-loading'
+import Header from './Header'
+import PageNotFound from './PageNotFound'
+import Login from './Login'
+import Home from './Home'
+import AddQuestion from './AddQuestion'
+import LeaderBoard from './LeaderBoard'
+import Question from './Question'
+import Result from './Result'
+
+
+
+
 
 class App extends Component {
   render() {
