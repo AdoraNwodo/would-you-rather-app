@@ -226,10 +226,14 @@ button.addquestion{
   display: inline-block;
   width: 50%;
 }
+.card-lg-2 ul li button:hover{
+  background: rgb(226, 226, 226) !important;
+}
 .card-lg-2 ul li button{
   width: 100%;
   background: white !important;
   border: none;
+  padding: 10px; 
   color: black;
   font-weight: bold;
   outline: none;

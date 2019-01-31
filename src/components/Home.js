@@ -15,10 +15,16 @@ class Home extends Component {
 
     handleUnansweredQuestionsClick = () => {
         console.log("unanswered question click")
+        this.setState({
+            questionType: "unanswered",
+        })
     }
 
     handleAnsweredQuestionsClick = () => {
         console.log("answered question click")
+        this.setState({
+            questionType: "answered",
+        })
     }
 
     render() {
@@ -41,8 +47,29 @@ class Home extends Component {
                         }
                     </li>
                 </ul>
-                { this.props.unanswered !== undefined &&
+                { this.state.questionType === "unanswered" && 
+                this.props.unanswered !== undefined &&
                 this.props.unanswered.map((question) => 
+                <div className="questionlistcard" key={question.id}>
+                    <div className="row">
+                        <div className="img-col">
+                            <img src={question.user.avatarURL} className="profile-image"/>
+                        </div>
+                        <div className="details-col">
+                            <p>{question.user.name} asks - Would you rather</p>
+                            <p><strong>{question.optionOne.text}...</strong></p>
+                            <p>
+                            <NavLink to={`/questions/${question.id}`}>
+                                View Poll
+                            </NavLink>
+                            </p>
+                            <br />
+                        </div>
+                    </div>
+                </div>)}
+                { this.state.questionType === "answered" && 
+                this.props.answered !== undefined &&
+                this.props.answered.map((question) => 
                 <div className="questionlistcard" key={question.id}>
                     <div className="row">
                         <div className="img-col">

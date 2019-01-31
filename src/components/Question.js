@@ -4,6 +4,19 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 class Question extends Component {
+    componentDidMount(){
+      if(this.props.authedUser === null)
+        this.props.history.push('/')
+    }
+
+    handleRadioOptionChange = (value) => {
+      console.log(value)
+    }
+
+    state = {
+      option: ''
+    }
+
     render() {
       const { question } = this.props
         
@@ -14,7 +27,6 @@ class Question extends Component {
         <div className="text-center"> 
           <Nav />
           <br />
-          
           <div className="card center-block">
             { this.props.author && 
             <div>
@@ -26,11 +38,11 @@ class Question extends Component {
             <p>Would you rather?</p>
             { this.props.question && 
             <form action="" className="question-form">
-              <input type="radio" name="gender" value="male" /> {this.props.question.optionOne.text}
+              <input type="radio" name="answer" value="optionOne" onChange={(e) => this.handleRadioOptionChange(e.target.value)} /> {this.props.question.optionOne.text}
               <br />
               <span>Or</span>
               <br />
-              <input type="radio" name="gender" value="female" /> {this.props.question.optionTwo.text}
+              <input type="radio" name="answer" value="optionTwo" onChange={(e) => this.handleRadioOptionChange(e.target.value)} /> {this.props.question.optionTwo.text}
               <br />
             </form>}
             <button className="addquestion">
@@ -49,9 +61,12 @@ class Question extends Component {
       question: questions
               ? questions[id]
               : null,
-      author: users
+      author: users && questions[id]
               ? users[questions[id].author]
-              : null,  
+              : null,
+      authedUser : authedUser
+              ? authedUser
+              : null 
     }
     
     
