@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Nav from './Nav';
+import Nav from './Nav'
+import { connect } from 'react-redux'
 
 class LeaderBoard extends Component {
     render() {
@@ -7,41 +8,45 @@ class LeaderBoard extends Component {
           <div className="text-center"> 
               <Nav />
               <br />
-              <div className="card-lg center-block">
+              { this.props.users !== undefined &&
+              this.props.users.map((user) => 
+              <div className="card-lg center-block" key={user.id}>
                 <div className="row">
                     <div className="img-col">
-                        <img src="https://via.placeholder.com/150" className="profile-image"/>
+                        <img src={user.avatarURL} className="profile-image"/>
                     </div>
                     <div className="details-col">
-                        <p>Sarah Edo</p>
-                        <p>7 answered questions</p>
-                        <p>3 created questions</p>
+                        <p>{user.name} ({user.id}) </p>
+                        <p>{user.answers} answered questions</p>
+                        <p>{user.questions} created questions</p>
                         <br />
                     </div>
                     <div className="score-col">
-                        <p><strong>Score: 10</strong></p>
+                        <p><strong>Score: {Number(user.answers) + Number(user.questions)}</strong></p>
                     </div>
                 </div>
               </div>
-              <div className="card-lg center-block">
-                <div className="row">
-                    <div className="img-col">
-                        <img src="https://via.placeholder.com/150" className="profile-image"/>
-                    </div>
-                    <div className="details-col">
-                        <p>Sarah Edo</p>
-                        <p>7 answered questions</p>
-                        <p>3 created questions</p>
-                        <br />
-                    </div>
-                    <div className="score-col">
-                        <p><strong>Score: 10</strong></p>
-                    </div>
-                </div>
-              </div>
+              )}
           </div>
       );
     }
   }
+  function mapStateToProps ({ users }) {
+    console.log("suersss", users)
+    var userArray = [];
+    Object.entries(users).forEach(
+        ([key, value]) => // console.log(key, value)
+        userArray.push({
+            id: value.id,
+            name: value.name,
+            avatarURL: value.avatarURL,
+            questions: value.questions.length,
+            answers: Object.keys(value.answers).length,
+        })
+    );
+    return {
+        users: userArray
+    }
+  }
   
-  export default LeaderBoard;
+  export default connect(mapStateToProps)(LeaderBoard)

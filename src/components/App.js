@@ -17,6 +17,9 @@ import Result from './Result'
 
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+  }
   render() {
     return (
       <div>
@@ -41,5 +44,5 @@ class App extends Component {
     );
   }
 }
-
-export default App;
+export default connect()(App)
+// export default App;
