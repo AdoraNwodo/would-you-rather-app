@@ -56,7 +56,7 @@ class Question extends Component {
             }
             { author && 
             <div>
-              <img src={author.avatarURL} className="profile-image"/>
+              <img src={author.avatarURL} className="profile-image" alt="profile"/>
               <h3>
                   <small>{author.name} asks:</small>
               </h3>

@@ -34,7 +34,7 @@ class AddQuestion extends Component {
             return
         }
         this.props.dispatch(handleAddQuestion( this.state.optionOne, this.state.optionTwo, this.props.authedUser ))
-        this.setState({ questionAdded: true })
+        this.setState({ questionAdded: true, optionOne: '', optionTwo: '' })
     }
     render() {
       const { questionAdded, optionsIncomplete } = this.state

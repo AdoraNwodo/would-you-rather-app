@@ -14,7 +14,7 @@ class LeaderBoard extends Component {
               <div className="card-lg center-block" key={user.id}>
                 <div className="row">
                     <div className="img-col">
-                        <img src={user.avatarURL} className="profile-image"/>
+                        <img src={user.avatarURL} className="profile-image" alt="profile"/>
                     </div>
                     <div className="details-col">
                         <p>{user.name} ({user.id}) </p>
@@ -33,7 +33,6 @@ class LeaderBoard extends Component {
     }
   }
   function mapStateToProps ({ users }) {
-    console.log("suersss", users)
     var userArray = [];
     Object.entries(users).forEach(
         ([key, value]) =>

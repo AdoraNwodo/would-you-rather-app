@@ -22,7 +22,6 @@ class Result extends Component {
         optionOnePercentage = ( optionOneVotes / total ) * 100
         optionTwoPercentage = ( optionTwoVotes / total ) * 100
         authedUserAnswer = users[authedUser].answers[id]
-        console.log("ANSWERRR", authedUserAnswer)
       }
       
         
@@ -35,7 +34,7 @@ class Result extends Component {
           <br />
           {question && 
           <div className="card center-block">
-            <img src={author.avatarURL} className="profile-image"/>
+            <img src={author.avatarURL} className="profile-image" alt="profile"/>
             <h3>
                 <small>{author.name} asks:</small>
             </h3>

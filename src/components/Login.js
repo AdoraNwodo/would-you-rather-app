@@ -16,7 +16,6 @@ class Login extends Component {
                 user: user,
                 login_failed: false,
             });
-            console.log("User: ", this.state)
         }  
     }
 

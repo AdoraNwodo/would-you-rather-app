@@ -21,8 +21,8 @@ class Nav extends Component {
             <div>
               <div className="row profile">
                   {avatar
-                    ? <img src={avatar} className="profile-image"/>
-                    : <img src="https://via.placeholder.com/150" className="profile-image"/> }
+                    ? <img src={avatar} className="profile-image" alt="profile"/>
+                    : <img src="https://via.placeholder.com/150" className="profile-image" alt="profile"/> }
                   <p className="text-center">Hello, {name} ( {authedUser} )</p>
                   <button className="center-block" onClick={this.handleLogout}>
                       Logout

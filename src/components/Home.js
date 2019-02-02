@@ -14,14 +14,12 @@ class Home extends Component {
     }
 
     handleUnansweredQuestionsClick = () => {
-        console.log("unanswered question click")
         this.setState({
             questionType: "unanswered",
         })
     }
 
     handleAnsweredQuestionsClick = () => {
-        console.log("answered question click")
         this.setState({
             questionType: "answered",
         })
@@ -55,7 +53,7 @@ class Home extends Component {
                 <div className="questionlistcard" key={question.id}>
                     <div className="row">
                         <div className="img-col">
-                            <img src={question.user.avatarURL} className="profile-image"/>
+                            <img src={question.user.avatarURL} className="profile-image" alt="profile"/>
                         </div>
                         <div className="details-col">
                             <p>{question.user.name} asks - Would you rather</p>
@@ -75,7 +73,7 @@ class Home extends Component {
                 <div className="questionlistcard" key={question.id}>
                     <div className="row">
                         <div className="img-col">
-                            <img src={question.user.avatarURL} className="profile-image"/>
+                            <img src={question.user.avatarURL} className="profile-image" alt="profile"/>
                         </div>
                         <div className="details-col">
                             <p>{question.user.name} asks - Would you rather</p>
