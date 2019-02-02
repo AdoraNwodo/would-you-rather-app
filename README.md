@@ -7,6 +7,8 @@ The application consists of six pages.
   <img src="https://github.com/AdoraNwodo/would-you-rather-app/blob/master/login.png" height="250"/>
 
   2. **Home Page** : This shows two tabs. Unanswered & Answered questions. Unanswered questions are shown by default and the user can alternate between the two tabs.
+  
+  
    <img src="https://github.com/AdoraNwodo/would-you-rather-app/blob/master/home-unanswered.png" height="250"/>   <img src="https://github.com/AdoraNwodo/would-you-rather-app/blob/master/home-answered.png" height="250"/>
    
   3. **Question Page** : The Question Page consists of a form. The user has to choose an option to answer the question.
