@@ -23,7 +23,7 @@ class LeaderBoard extends Component {
                         <br />
                     </div>
                     <div className="score-col">
-                        <p><strong>Score: {Number(user.answers) + Number(user.questions)}</strong></p>
+                        <p><strong>Score: {user.score}</strong></p>
                     </div>
                 </div>
               </div>
@@ -35,17 +35,21 @@ class LeaderBoard extends Component {
   function mapStateToProps ({ users }) {
     var userArray = [];
     Object.entries(users).forEach(
-        ([key, value]) =>
-        userArray.push({
-            id: value.id,
-            name: value.name,
-            avatarURL: value.avatarURL,
-            questions: value.questions.length,
-            answers: Object.keys(value.answers).length,
-        })
+        ([key, value]) =>{
+            const questions = value.questions.length
+            const answers = Object.keys(value.answers).length
+            userArray.push({
+                id: value.id,
+                name: value.name,
+                avatarURL: value.avatarURL,
+                questions: questions,
+                answers: answers,
+                score: questions + answers
+            })
+        }
     );
     return {
-        users: userArray
+        users: userArray.sort((a,b) => b.score - a.score)
     }
   }
   
