@@ -33,18 +33,20 @@ class Login extends Component {
     }
 
     render() {
+      const { users } = this.props
+      const { login_failed, user } = this.state
       return (
           <div className="login-box"> 
               <p className="text-center">Login to play</p>
-              {this.state.login_failed &&
+              {login_failed &&
                 <div>
                     <small className="pink-text">You have to choose a user to login</small><br /><br />
                 </div>
               }
-              <select className="form-control" value={this.state.user} onChange={(e) => this.handleUserSelected(e.target.value)}>
+              <select className="form-control" value={user} onChange={(e) => this.handleUserSelected(e.target.value)}>
                 <option value="">Choose a User</option>
-                {this.props.users.length > 0 &&
-                    this.props.users.map((user) => (
+                {users.length > 0 &&
+                    users.map((user) => (
                     <option value={user.id} key={user.id}>{user.name}</option>
                 ))}
               </select>
@@ -57,11 +59,9 @@ class Login extends Component {
 }
 
 function mapStateToProps ({ users }) {
-    console.log("Users", users);
-
     var userArray = [];
     Object.entries(users).forEach(
-        ([key, value]) => // console.log(key, value)
+        ([key, value]) => 
         userArray.push({
             id: value.id,
             name: value.name,
@@ -70,7 +70,6 @@ function mapStateToProps ({ users }) {
     return {
         users: userArray
     }
-
 }
   
   export default connect(mapStateToProps)(Login);

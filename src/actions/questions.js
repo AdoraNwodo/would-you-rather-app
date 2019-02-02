@@ -1,7 +1,6 @@
 import { saveQuestionAnswer, saveQuestion } from '../utils/api'
-import { showLoading, hideLoading } from 'react-redux-loading'
 
-import { handleAddQuestionToUser } from '../actions/users'
+import { handleAddQuestionToUser, handleAddAnswerToUser } from '../actions/users'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
@@ -17,8 +16,6 @@ function addQuestion (question) {
 export function handleAddQuestion (optionOneText, optionTwoText, author) {
   return (dispatch) => {
 
-    dispatch(showLoading())
-
     return saveQuestion({
         optionOneText, 
         optionTwoText, 
@@ -28,7 +25,6 @@ export function handleAddQuestion (optionOneText, optionTwoText, author) {
         dispatch(addQuestion(question))
         dispatch(handleAddQuestionToUser(question))
       })
-      .then(() => dispatch(hideLoading()))
   }
 }
 
@@ -39,24 +35,25 @@ export function receiveQuestions (questions) {
   }
 }
 
-function answerQuestion ({ authedUser, qid, answer }) {
+function answerQuestion (authedUser, qid, answer) {
   return {
     type: ANSWER_QUESTION,
-    qid,
-    authedUser,
+    authedUser, 
+    qid, 
     answer
   }
 }
 
-export function handleAnswerQuestion (info) {
+export function handleAnswerQuestion (authedUser, qid, answer ) {
   return (dispatch) => {
-    dispatch(answerQuestion(info))
-
-    return saveQuestionAnswer(info)
-      .catch((e) => {
-        console.warn('Error in handleAnswerQuestion: ', e)
-        dispatch(answerQuestion(info))
-        alert('The was an error answering the question. Try again.')
-      })
+    return saveQuestionAnswer({
+      qid, 
+      authedUser, 
+      answer
+    })
+    .then(({authedUser, qid, answer}) => {
+      dispatch(answerQuestion(authedUser, qid, answer))
+      dispatch(handleAddAnswerToUser(authedUser, qid, answer))
+    })
   }
 }

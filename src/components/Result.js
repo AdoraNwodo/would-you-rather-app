@@ -1,32 +1,75 @@
 import React, { Component } from 'react'
-import Nav from './Nav';
-import { NavLink } from 'react-router-dom'
+import Nav from './Nav'
+import PageNotFound from './PageNotFound'
+import { connect } from 'react-redux'
 
 class Result extends Component {
     render() {
+      const { question, users, author, authedUser } = this.props
+      const { id } = this.props.match.params
+
+      let optionOneVotes = 0
+      let optionTwoVotes = 0
+      let optionOnePercentage = 0
+      let optionTwoPercentage = 0
+      let total = 0
+      let authedUserAnswer = ''
+
+      if(question !== undefined){
+        optionOneVotes = Number(question.optionOne.votes.length)
+        optionTwoVotes = Number(question.optionTwo.votes.length)
+        total = optionOneVotes + optionTwoVotes
+        optionOnePercentage = ( optionOneVotes / total ) * 100
+        optionTwoPercentage = ( optionTwoVotes / total ) * 100
+        authedUserAnswer = users[authedUser].answers[id]
+        console.log("ANSWERRR", authedUserAnswer)
+      }
+      
+        
+      if( question === null || users === null){
+        return <PageNotFound />
+      }
       return (
-        <div className="text-center"> 
+        <div className="text-center result"> 
           <Nav />
           <br />
+          {question && 
           <div className="card center-block">
-            <img src="https://via.placeholder.com/150" className="profile-image"/>
+            <img src={author.avatarURL} className="profile-image"/>
             <h3>
-                <small>Nenne Nwodo asks:</small>
+                <small>{author.name} asks:</small>
             </h3>
             <p>Results</p>
-            <div className="card-full answered">
-                <p>Would you rather find $1,000 yourself</p>
-                <p className="votes">2 out of 3 votes - 66.7%</p>
-                <small className="pink-text">Your answer</small>
+            <div className={`card-full ${authedUserAnswer === 'optionOne'}`}>
+                <p>Would you rather {question.optionOne.text}</p>
+                <p className="votes">{optionOneVotes} out of {total} votes - {optionOnePercentage.toFixed(1)}%</p>
+                {authedUserAnswer === 'optionOne' && <small className="pink-text">Your answer</small>}
             </div>
-            <div className="card-full">
-                <p>Would you rather let your friend find $1,000</p>
-                <p className="votes">1 out of 3 votes - 33.3%</p>
+            <div className={`card-full ${authedUserAnswer === 'optionTwo'} `}>
+                <p>Would you rather {question.optionTwo.text}</p>
+                <p className="votes">{optionTwoVotes} out of {total} votes - {optionTwoPercentage.toFixed(1)}%</p>
+                {authedUserAnswer === 'optionTwo' && <small className="pink-text">Your answer</small>}
             </div>
-          </div>
+          </div>}
       </div>
       );
     }
   }
+
+  function mapStateToProps({authedUser, questions, users}, props){
+    const { id } = props.match.params;
+    return {
+      question: questions
+              ? questions[id]
+              : null,
+      users: users ? users : null, 
+      author: users && questions[id]
+              ? users[questions[id].author]
+              : null,
+      authedUser : authedUser
+              ? authedUser
+              : null 
+    }  
+  }
   
-  export default Result;
+  export default connect(mapStateToProps)(Result);

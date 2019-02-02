@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 
 class LeaderBoard extends Component {
     render() {
+      const { users } = this.props
       return (
           <div className="text-center"> 
               <Nav />
               <br />
-              { this.props.users !== undefined &&
-              this.props.users.map((user) => 
+              {users !== undefined &&
+              users.map((user) => 
               <div className="card-lg center-block" key={user.id}>
                 <div className="row">
                     <div className="img-col">
@@ -35,7 +36,7 @@ class LeaderBoard extends Component {
     console.log("suersss", users)
     var userArray = [];
     Object.entries(users).forEach(
-        ([key, value]) => // console.log(key, value)
+        ([key, value]) =>
         userArray.push({
             id: value.id,
             name: value.name,

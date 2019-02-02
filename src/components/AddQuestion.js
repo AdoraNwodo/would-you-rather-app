@@ -37,11 +37,12 @@ class AddQuestion extends Component {
         this.setState({ questionAdded: true })
     }
     render() {
+      const { questionAdded, optionsIncomplete } = this.state
       return (
           <div className="text-center"> 
               <Nav />
               <br />
-              { this.state.questionAdded &&
+              {questionAdded &&
                 <p>
                     <small className="pink-text">Question added. You can add more if you like </small>
                 </p>}
@@ -52,7 +53,7 @@ class AddQuestion extends Component {
                 <p><small>Complete the Question:</small></p>
                 <p><small>Would you rather...</small></p>
                 <br />
-                { this.state.optionsIncomplete &&
+                {optionsIncomplete &&
                 <p>
                     <small className="pink-text">Please fill options one & two</small>
                 </p>}

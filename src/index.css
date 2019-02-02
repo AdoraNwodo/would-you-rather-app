@@ -255,8 +255,11 @@ button.addquestion{
 .question-form{
   padding: 50px 0px;
 }
-.answered{
+.result .card-full.true{
   background: rgb(252, 238, 240);
+}
+.result .card-full{
+  background: white;
 }
 p.votes{
   font-weight: bolder;

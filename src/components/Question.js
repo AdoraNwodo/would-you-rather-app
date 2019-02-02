@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Nav from './Nav'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { handleAnswerQuestion } from '../actions/questions'
 
 class Question extends Component {
     componentDidMount(){
@@ -9,16 +9,37 @@ class Question extends Component {
         this.props.history.push('/')
     }
 
-    handleRadioOptionChange = (value) => {
-      console.log(value)
+    state = {
+      option: '',
+      submitError: false
     }
 
-    state = {
-      option: ''
+    handleRadioOptionChange = (value) => {
+      this.setState({
+        option: value,
+        submitError: false,
+      })
+    }
+
+    handleSubmit = () => {
+      const { option } = this.state
+      if(option === ''){
+        this.setState({
+          submitError: true,
+        })
+        return
+      }
+
+      // save answer
+      this.props.dispatch(handleAnswerQuestion( this.props.authedUser, this.props.match.params.id, option ))
+
+      // redirect to result page
+      this.props.history.push(`/results/${this.props.match.params.id}`)
     }
 
     render() {
-      const { question } = this.props
+      const { question, author } = this.props
+      const { submitError } = this.state
         
       if(question === null){
           return <p>This question does not exist</p>
@@ -28,24 +49,29 @@ class Question extends Component {
           <Nav />
           <br />
           <div className="card center-block">
-            { this.props.author && 
+            {submitError &&
+              <div>
+                  <small className="pink-text">You have to select an answer</small><br /><br />
+              </div>
+            }
+            { author && 
             <div>
-              <img src={this.props.author.avatarURL} className="profile-image"/>
+              <img src={author.avatarURL} className="profile-image"/>
               <h3>
-                  <small>{this.props.author.name} asks:</small>
+                  <small>{author.name} asks:</small>
               </h3>
             </div>}
             <p>Would you rather?</p>
-            { this.props.question && 
+            { question && 
             <form action="" className="question-form">
-              <input type="radio" name="answer" value="optionOne" onChange={(e) => this.handleRadioOptionChange(e.target.value)} /> {this.props.question.optionOne.text}
+              <input type="radio" name="answer" value="optionOne" onChange={(e) => this.handleRadioOptionChange(e.target.value)} /> {question.optionOne.text}
               <br />
               <span>Or</span>
               <br />
-              <input type="radio" name="answer" value="optionTwo" onChange={(e) => this.handleRadioOptionChange(e.target.value)} /> {this.props.question.optionTwo.text}
+              <input type="radio" name="answer" value="optionTwo" onChange={(e) => this.handleRadioOptionChange(e.target.value)} /> {question.optionTwo.text}
               <br />
             </form>}
-            <button className="addquestion">
+            <button className="addquestion" onClick={this.handleSubmit}>
                 Submit
             </button>
           </div>
@@ -56,7 +82,6 @@ class Question extends Component {
 
   function mapStateToProps({authedUser, questions, users}, props){
     const { id } = props.match.params;
-
     return {
       question: questions
               ? questions[id]
@@ -67,9 +92,7 @@ class Question extends Component {
       authedUser : authedUser
               ? authedUser
               : null 
-    }
-    
-    
+    }  
   }
   
   export default connect(mapStateToProps)(Question);

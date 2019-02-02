@@ -28,6 +28,8 @@ class Home extends Component {
     }
 
     render() {
+      const { unanswered, answered } = this.props
+      const { questionType } = this.state
       return (
           <div className="text-center">
               <Nav />
@@ -35,21 +37,21 @@ class Home extends Component {
               <div className="card-lg-2 center-block">
                 <ul>
                     <li>
-                        {this.state.questionType === "unanswered" 
+                        {questionType === "unanswered" 
                             ? <button className="active">Unanswered Questions</button>
                             : <button onClick={this.handleUnansweredQuestionsClick}>Unanswered Questions</button>
                         }
                     </li>
                     <li>
-                        {this.state.questionType === "answered" 
+                        {questionType === "answered" 
                             ? <button className="active">Answered Questions</button>
                             : <button onClick={this.handleAnsweredQuestionsClick}>Answered Questions</button>
                         }
                     </li>
                 </ul>
-                { this.state.questionType === "unanswered" && 
-                this.props.unanswered !== undefined &&
-                this.props.unanswered.map((question) => 
+                {questionType === "unanswered" && 
+                unanswered !== undefined &&
+                unanswered.map((question) => 
                 <div className="questionlistcard" key={question.id}>
                     <div className="row">
                         <div className="img-col">
@@ -67,9 +69,9 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>)}
-                { this.state.questionType === "answered" && 
-                this.props.answered !== undefined &&
-                this.props.answered.map((question) => 
+                {questionType === "answered" && 
+                answered !== undefined &&
+                answered.map((question) => 
                 <div className="questionlistcard" key={question.id}>
                     <div className="row">
                         <div className="img-col">
@@ -79,8 +81,8 @@ class Home extends Component {
                             <p>{question.user.name} asks - Would you rather</p>
                             <p><strong>{question.optionOne.text}...</strong></p>
                             <p>
-                            <NavLink to={`/questions/${question.id}`}>
-                                View Poll
+                            <NavLink to={`/results/${question.id}`}>
+                                View Answer
                             </NavLink>
                             </p>
                             <br />

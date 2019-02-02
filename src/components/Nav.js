@@ -16,13 +16,14 @@ class Nav extends Component {
     }
 
     render(){
+        const { avatar, authedUser, name } = this.props
         return (
             <div>
               <div className="row profile">
-                  {this.props.avatar
-                    ? <img src={this.props.avatar} className="profile-image"/>
+                  {avatar
+                    ? <img src={avatar} className="profile-image"/>
                     : <img src="https://via.placeholder.com/150" className="profile-image"/> }
-                  <p className="text-center">Hello, {this.props.name} ( {this.props.authedUser} )</p>
+                  <p className="text-center">Hello, {name} ( {authedUser} )</p>
                   <button className="center-block" onClick={this.handleLogout}>
                       Logout
                   </button>
