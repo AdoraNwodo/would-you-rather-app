@@ -26,8 +26,16 @@ class Home extends Component {
     }
 
     render() {
-      const { unanswered, answered } = this.props
+      const { myAnswers, questions, users } = this.props
       const { questionType } = this.state
+      const answered = Object.values(questions)
+                        .filter(question => myAnswers.includes(question.id))
+                        .sort((a,b) => b.timestamp - a.timestamp)
+      const unanswered = Object.values(questions)
+                        .filter(question => ! myAnswers.includes(question.id))
+                        .sort((a,b) => b.timestamp - a.timestamp)
+
+      console.log(questions);
       return (
           <div className="text-center">
               <Nav />
@@ -48,15 +56,15 @@ class Home extends Component {
                     </li>
                 </ul>
                 {questionType === "unanswered" && 
-                unanswered !== undefined &&
+                questions !== undefined &&
                 unanswered.map((question) => 
                 <div className="questionlistcard" key={question.id}>
                     <div className="row">
                         <div className="img-col">
-                            <img src={question.user.avatarURL} className="profile-image" alt="profile"/>
+                            <img src={users[question.author].avatarURL} className="profile-image" alt="profile"/>
                         </div>
                         <div className="details-col">
-                            <p>{question.user.name} asks - Would you rather</p>
+                            <p>{users[question.author].name} asks - Would you rather</p>
                             <p><strong>{question.optionOne.text}...</strong></p>
                             <p>
                             <NavLink to={`/questions/${question.id}`}>
@@ -68,15 +76,15 @@ class Home extends Component {
                     </div>
                 </div>)}
                 {questionType === "answered" && 
-                answered !== undefined &&
+                questions !== undefined &&
                 answered.map((question) => 
                 <div className="questionlistcard" key={question.id}>
                     <div className="row">
                         <div className="img-col">
-                            <img src={question.user.avatarURL} className="profile-image" alt="profile"/>
+                            <img src={users[question.author].avatarURL} className="profile-image" alt="profile"/>
                         </div>
                         <div className="details-col">
-                            <p>{question.user.name} asks - Would you rather</p>
+                            <p>{users[question.author].name} asks - Would you rather</p>
                             <p><strong>{question.optionOne.text}...</strong></p>
                             <p>
                             <NavLink to={`/results/${question.id}`}>
@@ -93,24 +101,17 @@ class Home extends Component {
     }
   }
 function mapStateToProps ({ users, authedUser , questions}) {
-
-    if(users[authedUser] !== undefined ){
-        let myAnswers = Object.keys(users[authedUser].answers);
-        let questionsArray = Object.values(questions); 
-        let unanswered = [];
-        let answered = [];
-
-        questionsArray.forEach(
-            (x) => {
-            myAnswers.includes(x.id) ? answered.push(x) : unanswered.push(x);
-            x.user = users[x.author];
-        });
-
-        return { answered, unanswered };
+    return {
+        users: users
+            ? users
+            : [],
+        questions: questions
+            ? questions
+            : [],
+        myAnswers: users[authedUser]
+            ? Object.keys(users[authedUser].answers)
+            : [],
     }
-    
-    return {}
-
 }
   
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Home); 
