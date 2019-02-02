@@ -10,7 +10,7 @@ class PageNotFound extends Component {
             <p>Sorry, this page does not exist</p>
             
             <p className="link">
-                <NavLink to='/' exact className="go-to-home">
+                <NavLink to='/home' exact className="go-to-home">
                     Go to Home
                 </NavLink>
             </p>

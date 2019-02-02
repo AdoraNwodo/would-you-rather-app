@@ -34,8 +34,6 @@ class Home extends Component {
       const unanswered = Object.values(questions)
                         .filter(question => ! myAnswers.includes(question.id))
                         .sort((a,b) => b.timestamp - a.timestamp)
-
-      console.log(questions);
       return (
           <div className="text-center">
               <Nav />

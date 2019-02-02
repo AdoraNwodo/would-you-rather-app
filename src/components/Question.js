@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import Nav from './Nav'
+import PageNotFound from './PageNotFound'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
 
 class Question extends Component {
     componentDidMount(){
       if(this.props.authedUser === null)
-        this.props.history.push('/')
+        this.props.history.push(`/login/redirect/${this.props.match.params.id}`)
     }
 
     state = {
@@ -41,9 +42,10 @@ class Question extends Component {
       const { question, author } = this.props
       const { submitError } = this.state
         
-      if(question === null){
-          return <p>This question does not exist</p>
+      if(question === undefined){
+          return(<PageNotFound />);
       }
+      
       return (
         <div className="text-center"> 
           <Nav />

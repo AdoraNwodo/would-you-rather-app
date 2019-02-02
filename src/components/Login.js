@@ -10,6 +10,11 @@ class Login extends Component {
         login_failed: false
     };
 
+    componentDidMount(){
+        // redirect to home if user is already authenticated
+        this.props.authedUser && this.props.history.push('/home')
+    }
+
     handleUserSelected = (user) => {
         if(user !== ""){
             this.setState({
@@ -20,10 +25,11 @@ class Login extends Component {
     }
 
     handleClick = ()  => {
-  
         if(this.state.user !== ""){
             this.props.dispatch(authenticate(this.state.user))
-            this.props.history.push('/home')
+            this.props.match.params.id 
+                ? this.props.history.push(`/questions/${this.props.match.params.id }`)
+                : this.props.history.push('/home')
         }else{
             this.setState({
                 login_failed: true,
@@ -57,7 +63,7 @@ class Login extends Component {
     }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ users, authedUser }) {
     var userArray = [];
     Object.entries(users).forEach(
         ([key, value]) => 
@@ -67,7 +73,8 @@ function mapStateToProps ({ users }) {
         })
     );
     return {
-        users: userArray
+        users: userArray,
+        authedUser
     }
 }
   
